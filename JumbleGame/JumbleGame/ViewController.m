@@ -80,42 +80,40 @@
         //create a new array to store data
         NSMutableArray *newResults = [[NSMutableArray alloc] init];
         
-        //use dispatch apply to concurrently run through the iterations over the dictionary for faster performance
-        dispatch_apply(dictionary.count, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul), ^(size_t index)
-       {
-           // if word is a character or greater than length of input string, skip
-           NSString *string = [[dictionary objectAtIndex:index] lowercaseString];
-           if (string.length > currentString.length || string.length <= 1)
-           {
-               return;
-           }
-           
-           NSDictionary *newStringDict = [self dictionaryFromString:string];
-           NSSet *allStringKeys = [NSSet setWithArray:[newStringDict allKeys]];
-           
-           //if the current word has different letters than input string, skip
-           if (![allStringKeys isSubsetOfSet:allKeys])
-           {
-               return;
-           }
-           
-           BOOL passed = YES;
-           
-           for (NSString *key in [newStringDict allKeys])
-           {
-               //if the current word has more repetition of any character than input string, skip
-               if ([newStringDict[key] intValue] > [currentStringDict[key] intValue])
-               {
-                   passed = NO;
-                   break;
-               }
-           }
-           
-           if (passed)
-           {
-               [newResults addObject:string];
-           }
-       });
+        for (NSString *string in dictionary)
+        {
+            // if word is a character or greater than length of input string, skip
+            if (string.length > currentString.length || string.length <= 1)
+            {
+                continue;
+            }
+            
+            NSDictionary *newStringDict = [self dictionaryFromString:string];
+            NSSet *allStringKeys = [NSSet setWithArray:[newStringDict allKeys]];
+            
+            //if the current word has different letters than input string, skip
+            if (![allStringKeys isSubsetOfSet:allKeys])
+            {
+                continue;
+            }
+            
+            BOOL passed = YES;
+            
+            for (NSString *key in [newStringDict allKeys])
+            {
+                //if the current word has more repetition of any character than input string, skip
+                if ([newStringDict[key] intValue] > [currentStringDict[key] intValue])
+                {
+                    passed = NO;
+                    break;
+                }
+            }
+            
+            if (passed)
+            {
+                [newResults addObject:string];
+            }
+        }
         
         results = newResults;
         
