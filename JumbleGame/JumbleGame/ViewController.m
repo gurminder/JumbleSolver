@@ -32,6 +32,8 @@
     
     serialQueue = dispatch_queue_create("jumbleSerialQueue", DISPATCH_QUEUE_SERIAL);
     
+    
+    //load the dictionary in the background from the file
     dispatch_async(serialQueue, ^{
         
         NSString *listPath = [[NSBundle mainBundle] pathForResource:@"brit-a-z" ofType:@"txt"];
@@ -57,6 +59,7 @@
 
 -(void)solveJumble:(id)sender
 {
+    //this is to avoid tapping on solve button when keyboard is not up
     if (![self.textField isFirstResponder])
     {
         return;
@@ -70,14 +73,17 @@
     NSDictionary *currentStringDict = [self dictionaryFromString:currentString];
     NSSet *allKeys = [NSSet setWithArray:[currentStringDict allKeys]];
     
-    [results removeAllObjects];
-    
     NSDate *startTime = [NSDate date];
     
     dispatch_async(serialQueue, ^{
         
+        //create a new array to store data
+        NSMutableArray *newResults = [[NSMutableArray alloc] init];
+        
+        //use dispatch apply to concurrently run through the iterations over the dictionary for faster performance
         dispatch_apply(dictionary.count, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul), ^(size_t index)
        {
+           // if word is a character or greater than length of input string, skip
            NSString *string = [[dictionary objectAtIndex:index] lowercaseString];
            if (string.length > currentString.length || string.length <= 1)
            {
@@ -87,6 +93,7 @@
            NSDictionary *newStringDict = [self dictionaryFromString:string];
            NSSet *allStringKeys = [NSSet setWithArray:[newStringDict allKeys]];
            
+           //if the current word has different letters than input string, skip
            if (![allStringKeys isSubsetOfSet:allKeys])
            {
                return;
@@ -96,6 +103,7 @@
            
            for (NSString *key in [newStringDict allKeys])
            {
+               //if the current word has more repetition of any character than input string, skip
                if ([newStringDict[key] intValue] > [currentStringDict[key] intValue])
                {
                    passed = NO;
@@ -105,9 +113,11 @@
            
            if (passed)
            {
-               [results addObject:string];
+               [newResults addObject:string];
            }
        });
+        
+        results = newResults;
         
         dispatch_sync(dispatch_get_main_queue(), ^{
            
