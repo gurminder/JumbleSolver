@@ -121,7 +121,7 @@
            
             NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:startTime];
             
-            self.foundLabel.text = [NSString stringWithFormat:@"%lu %@ found, took %f seconds", results.count, results.count > 1 ? @"words" : @"word", interval];
+            self.foundLabel.text = [NSString stringWithFormat:@"%d %@ found, took %f seconds", results.count, results.count > 1 ? @"words" : @"word", interval];
             
             [self.tableView reloadData];
             
