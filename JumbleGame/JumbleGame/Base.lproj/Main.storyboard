@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FkL-mM-g6T"/>
+                        <viewControllerLayoutGuide type="bottom" id="Naw-8x-SzW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jumble Solver" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57Y-6I-1JA">
+                                <rect key="frame" x="29" y="45" width="262" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                <color key="textColor" red="1" green="0.22987021169999999" blue="0.24451864919999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter text" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z2N-5v-rJV">
+                                <rect key="frame" x="60" y="103" width="200" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="JiM-TT-w2X"/>
+                                    <constraint firstAttribute="width" constant="200" id="VV0-A5-2uR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ugR-fU-iXV">
+                                <rect key="frame" x="0.0" y="220" width="320" height="348"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="qkC-Lx-Mbk"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="ae5-du-DDA"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JB8-Qu-ygO">
+                                <rect key="frame" x="120" y="153" width="80" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="Ria-or-6VC"/>
+                                </constraints>
+                                <state key="normal" title="Solve">
+                                    <color key="titleColor" red="1" green="0.22987021169999999" blue="0.24451864919999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="solveJumble:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="O6p-eH-W2j"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="lOs-x9-pyt">
+                                <rect key="frame" x="29" y="153" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="1" green="0.22987021169999999" blue="0.24451864919999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pvE-Sj-D5C">
+                                <rect key="frame" x="142" y="195" width="36" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.9418787802419355" blue="0.84419102822580649" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="lOs-x9-pyt" firstAttribute="centerY" secondItem="JB8-Qu-ygO" secondAttribute="centerY" constant="1.5" id="3SF-QP-qgg"/>
+                            <constraint firstAttribute="trailing" secondItem="ugR-fU-iXV" secondAttribute="trailing" id="3nJ-M2-sND"/>
+                            <constraint firstItem="pvE-Sj-D5C" firstAttribute="top" secondItem="JB8-Qu-ygO" secondAttribute="bottom" constant="8" id="83X-Dr-tDL"/>
+                            <constraint firstItem="JB8-Qu-ygO" firstAttribute="top" secondItem="z2N-5v-rJV" secondAttribute="bottom" constant="10" id="9Pn-aO-xSl"/>
+                            <constraint firstAttribute="centerX" secondItem="z2N-5v-rJV" secondAttribute="centerX" id="GYK-RF-s59"/>
+                            <constraint firstItem="Naw-8x-SzW" firstAttribute="top" secondItem="ugR-fU-iXV" secondAttribute="bottom" id="Jn4-oj-LoR"/>
+                            <constraint firstItem="JB8-Qu-ygO" firstAttribute="centerX" secondItem="pvE-Sj-D5C" secondAttribute="centerX" id="bBL-yY-ACy"/>
+                            <constraint firstItem="z2N-5v-rJV" firstAttribute="top" secondItem="57Y-6I-1JA" secondAttribute="bottom" constant="10" id="ceH-xZ-tBH"/>
+                            <constraint firstAttribute="centerX" secondItem="57Y-6I-1JA" secondAttribute="centerX" id="d5P-RR-8YF"/>
+                            <constraint firstItem="57Y-6I-1JA" firstAttribute="top" secondItem="FkL-mM-g6T" secondAttribute="bottom" constant="25" id="gVD-je-xFX"/>
+                            <constraint firstItem="ugR-fU-iXV" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="kHO-qi-pTf"/>
+                            <constraint firstAttribute="centerX" secondItem="JB8-Qu-ygO" secondAttribute="centerX" id="kjW-1l-Kl8"/>
+                            <constraint firstItem="57Y-6I-1JA" firstAttribute="leading" secondItem="lOs-x9-pyt" secondAttribute="leading" id="qar-cx-ZgG"/>
+                            <constraint firstItem="ugR-fU-iXV" firstAttribute="top" secondItem="pvE-Sj-D5C" secondAttribute="bottom" constant="8" id="tQ4-Yz-Igw"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="lOs-x9-pyt" id="ojL-TZ-JJh"/>
+                        <outlet property="foundLabel" destination="pvE-Sj-D5C" id="iFg-JH-wKd"/>
+                        <outlet property="tableView" destination="ugR-fU-iXV" id="M8s-6x-mFy"/>
+                        <outlet property="textField" destination="z2N-5v-rJV" id="egn-Vl-eCy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
